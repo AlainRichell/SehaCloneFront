@@ -1,0 +1,37 @@
+<nav class="flex justify-between items-center p-6 gap-8">
+  <div class="cursor-pointer" routerLink="/">
+    <img src="img/seha_logo.svg" alt="Seha Logo" />
+  </div>
+  <div
+    class="bg-white flex grow justify-between px-8 py-4 rounded-full gap-4 shadow-lg"
+  >
+  <div class="flex justify-between gap-4">
+    <button
+      class="flex items-center text-blue-600 hover:text-blue-900 hover:font-bold cursor-pointer"
+    >
+    الخدمات
+    </button>
+    <button
+    class="flex items-center text-blue-600 hover:text-blue-900 hover:font-bold cursor-pointer"
+    routerLink="/leave-query"
+  >
+  الاستعلامات
+  </button>
+  </div>
+    <div class="flex justify-between gap-4">
+      <button
+      class="flex items-center text-blue-600 hover:text-blue-900 hover:font-bold cursor-pointer"
+      routerLink="register"
+    >
+    إنشاء حساب
+    </button>
+      <button
+        class="flex items-center rounded-2xl text-white bg-blue-600 hover:bg-blue-900 px-4 py-2 gap-2 cursor-pointer"
+        routerLink="/login"
+      >
+      <img src="img/user.svg" alt="">
+      تسجيل الدخول
+      </button>
+    </div>
+  </div>
+</nav>

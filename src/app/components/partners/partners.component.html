@@ -1,0 +1,60 @@
+<section class="w-full py-12 bg-white">
+  <div class="container mx-auto px-4">
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <h2 class="text-4xl font-bold text-blue-600 mb-4">شركاء صحة</h2>
+    </div>
+
+    <!-- Partners Carousel -->
+    <div class="relative">
+      <!-- Partners Grid -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 items-center">
+        @for (partner of partnerPages[currentPage]; track partner.name) {
+          <div class="flex flex-col items-center p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
+            <img 
+              [src]="partner.logo" 
+              [alt]="partner.name"
+              class="h-20 w-auto object-contain mb-4 transition-all duration-300"
+            >
+          </div>
+        }
+      </div>
+
+      <!-- Navigation Arrows -->
+      <button 
+        (click)="previousPage()" 
+        [class.opacity-50]="currentPage === 0"
+        class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-white p-2 rounded-full shadow-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50"
+        [disabled]="currentPage === 0"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+
+      <button 
+        (click)="nextPage()" 
+        [class.opacity-50]="currentPage === partnerPages.length - 1"
+        class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-white p-2 rounded-full shadow-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50"
+        [disabled]="currentPage === partnerPages.length - 1"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Pagination Dots -->
+    <div class="flex justify-center mt-8 gap-2">
+      @for (page of partnerPages; track $index) {
+        <button 
+          (click)="goToPage($index)"
+          [class.bg-blue-500]="currentPage === $index"
+          [class.bg-gray-300]="currentPage !== $index"
+          class="w-2 h-2 rounded-full transition-colors duration-300 focus:outline-none"
+          [attr.aria-label]="'Go to page ' + ($index + 1)"
+        ></button>
+      }
+    </div>
+  </div>
+</section>

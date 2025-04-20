@@ -1,0 +1,46 @@
+<div class="flex flex-col p-8">
+  <!-- Carousel items -->
+  <div class="p-8 rounded-lg">
+    <h2 class="text-4xl text-blue-900 font-bold">
+      {{ items[currentIndex].title }}
+    </h2>
+    <h3 class="text-2xl text-blue-600 mt-2">
+      {{ items[currentIndex].subtitle }}
+    </h3>
+    <p class="text-gray-700 mt-4 whitespace-pre-line">{{ items[currentIndex].description }}</p>
+    <a
+      [routerLink]="items[currentIndex].buttonLink"
+      class="inline-flex items-center gap-2 mt-6 px-4 py-2 bg-blue-600 text-white rounded-2xl hover:bg-blue-900 transition"
+    >
+      {{ items[currentIndex].buttonText }}
+      <img src="img/arrow-left-white.svg" alt="" />
+    </a>
+  </div>
+
+  <!-- Carusel navigation buttons -->
+  <div class="flex justify-center-safe gap-4">
+    <button
+      (click)="prev()"
+      class="px-4 py-2 rounded-full text-blue-600 hover:bg-gray-300 cursor-pointer"
+    >
+      ❮
+    </button>
+    <div class="flex justify-center items-center gap-3">
+      <button
+        *ngFor="let item of items; let i = index"
+        (click)="currentIndex = i"
+        class="w-2 h-2 rounded-full ring-1 ring-blue-600 cursor-pointer"
+        [class.bg-blue-600]="i === currentIndex"
+        [class.bg-gray-100]="i !== currentIndex"
+      ></button>
+    </div>
+    <button
+      (click)="next()"
+      class="px-4 py-2 rounded-full text-blue-600 hover:bg-gray-300 cursor-pointer"
+    >
+      ❯
+    </button>
+  </div>
+
+  <!-- Hovering mouse -->
+</div>
