@@ -3,6 +3,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { saveAs } from 'file-saver';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { environment } from '../../../environments/environment';
 
 interface Certificate {
   id: number;
@@ -29,7 +30,7 @@ export class CertificateQueryComponent {
     this.certificate = null;
 
     // First request to get certificate data
-    this.http.get<Certificate>(`http://localhost:8000/certificados/?codigo=${this.code}&identificacion=${this.identification}`)
+    this.http.get<Certificate>(`${environment.apiUrl}/certificados/?codigo=${this.code}&identificacion=${this.identification}`)
       .subscribe({
         next: (certificate) => {
           this.certificate = certificate;
@@ -44,7 +45,7 @@ export class CertificateQueryComponent {
   }
 
   private downloadCertificate(certificateId: number) {
-    this.http.get(`http://localhost:8000/certificados/${certificateId}/print/`, { responseType: 'blob' })
+    this.http.get(`${environment.apiUrl}/certificados/${certificateId}/print/`, { responseType: 'blob' })
       .subscribe({
         next: (blob) => {
           saveAs(blob, `${certificateId}-شهادة.pdf`);
