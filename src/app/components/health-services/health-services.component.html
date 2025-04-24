@@ -3,28 +3,29 @@
     <!-- Header -->
     <div class="flex flex-col md:flex-row justify-between items-center mb-6 md:mb-8 gap-4">
       <div class="text-center md:text-right w-full md:w-auto">
-        <h2 class="text-3xl md:text-4xl font-bold text-blue-600">الخدمات</h2>
-        <p class="text-gray-600">الخدمات الأكثر استخداما</p>
+        <h2 class="text-3xl md:text-4xl font-bold text-primary">الخدمات</h2>
+        <p class="text-gray-400">الخدمات الأكثر استخداما</p>
       </div>
       <div class="flex grow justify-center">
-        <h1 class="text-3xl md:text-4xl font-bold text-[#0070CD]">{{ selectedCategory?.name || 'Servicios' }}</h1>
+        <h1 class="text-3xl md:text-4xl font-bold text-primary">{{ selectedCategory?.name || 'Servicios' }}</h1>
       </div>
     </div>
     
     <div class="flex flex-col md:flex-row gap-4 md:gap-8">
       <!-- Navigation Sidebar -->
       <div class="w-full md:w-64 shrink-0">
-        <nav class="bg-white rounded-lg shadow-md p-4">
+        <nav class="p-4">
           @for (category of services; track category.id) {
             <button
               (click)="selectCategory(category)"
-              class="w-full text-right px-4 py-2 rounded-lg transition-colors duration-200 mb-2"
-              [class.bg-[#0070CD]]="selectedCategory?.id === category.id"
+              class="flex justify-between gap-10 w-full text-right px-4 py-2 rounded-lg transition-colors duration-200 mb-2"
+              [class.bg-primary]="selectedCategory?.id === category.id"
               [class.text-white]="selectedCategory?.id === category.id"
-              [class.text-gray-700]="selectedCategory?.id !== category.id"
+              [class.text-primary]="selectedCategory?.id !== category.id"
               [class.hover:bg-blue-50]="selectedCategory?.id !== category.id"
             >
               {{ category.name }}
+              <img src="img/arrow-left-white.svg" alt="" />
             </button>
           }
         </nav>
@@ -35,15 +36,15 @@
         @if (selectedCategory) {
           <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">
             @for (subitem of visibleSubitems; track subitem.id) {
-              <div class="bg-white rounded-lg p-4 md:p-6 shadow-md text-right">
+              <div class="bg-white rounded-lg p-4 md:p-6 shadow-md text-right flex flex-col h-full">
                 <div class="flex justify-center mb-4">
                   <img [src]="subitem.icon" [alt]="subitem.name" class="w-12 h-12 md:w-16 md:h-16">
                 </div>
-                <h3 class="text-blue-600 text-lg md:text-xl text-center font-bold mb-2">{{ subitem.name }}</h3>
-                <p class="text-gray-600 text-justify mb-4 text-sm md:text-base">{{ subitem.description }}</p>
+                <h3 class="text-primary text-md text-center font-bold mb-2">{{ subitem.name }}</h3>
+                <p class="text-gray-500 text-justify mb-4 text-sm flex-grow">{{ subitem.description }}</p>
                 <a 
                   [routerLink]="subitem.navigationLink"
-                  class="bg-blue-600 text-white px-4 md:px-6 py-2 rounded-lg w-full text-center hover:bg-blue-900 transition-colors duration-200 inline-block text-sm md:text-base"
+                  class="mt-auto bg-primary text-white px-4 md:px-6 py-2 rounded-lg w-full text-center hover:bg-secondary transition-colors duration-200 inline-block text-sm md:text-base"
                 >
                   {{ subitem.buttonText }}
                 </a>
@@ -59,7 +60,7 @@
                 class="p-2 rounded-full hover:bg-gray-100 disabled:opacity-50"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 md:h-6 md:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                 </svg>
               </button>
 
@@ -71,14 +72,14 @@
                   class="w-2 h-2 rounded-full transition-colors duration-300"
                 ></button>
               }
-
+              
               <button
                 (click)="nextSlide()"
                 [disabled]="currentSlide === totalSlides - 1"
                 class="p-2 rounded-full hover:bg-gray-100 disabled:opacity-50"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 md:h-6 md:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                 </svg>
               </button>
             </div>

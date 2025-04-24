@@ -24,10 +24,9 @@ export class NavbarComponent implements OnInit {
 
   checkScreenSize() {
     if (isPlatformBrowser(this.platformId)) {
-      this.isDesktop = window.innerWidth >= 768;
-      if (this.isDesktop) {
-        this.isMenuOpen = true;
-      }
+      const isDesktop = window.innerWidth >= 768;
+      this.isDesktop = isDesktop;
+      this.isMenuOpen = isDesktop; // Siempre sincroniza el estado del menú
     }
   }
 

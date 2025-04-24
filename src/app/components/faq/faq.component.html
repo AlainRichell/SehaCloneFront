@@ -1,22 +1,22 @@
 <div class="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
   <div class="mx-8">
     <div class="text-center mb-12"> 
-      <h2 class="text-right text-4xl text-blue-600 font-bold mb-4">كيف يمكننا مساعدتك</h2>
-      <p class="text-lg text-right text-gray-600">الأسئلة الأكثر شيوعا</p>
+      <h2 class="text-right text-4xl text-primary font-extrabold mb-4">كيف يمكننا مساعدتك</h2>
+      <p class="text-lg text-right text-gray-400">الأسئلة الأكثر شيوعا</p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       <!-- Columna izquierda -->
       <div class="space-y-4">
         @for (faq of leftColumnFaqs; track faq) {
-          <div class="bg-white border-b-1 border-gray-200">
+          <div class="bg-white border-b-2 border-gray-200">
             <button 
               (click)="toggleFaq(faq)"
               class="w-full px-6 py-4 flex justify-between items-center cursor-pointer"
             >
-              <span class="text-lg font-medium text-blue-600">{{ faq.question }}</span>
+              <span class="text-md font-medium text-primary">{{ faq.question }}</span>
               <svg 
-                class="w-7 h-7 text-blue-600 transform transition-transform duration-200"
+                class="w-7 h-7 text-primary transform transition-transform duration-200"
                 [class.rotate-180]="faq.isOpen"
                 xmlns="http://www.w3.org/2000/svg" 
                 viewBox="0 0 20 20" 
@@ -28,7 +28,7 @@
             
             @if (faq.isOpen) {
               <div class="px-6 py-4">
-                <p class="text-gray-700">{{ faq.answer }}</p>
+                <p class="text-gray-400">{{ faq.answer }}</p>
               </div>
             }
           </div>
@@ -38,14 +38,14 @@
       <!-- Columna derecha -->
       <div class="space-y-4">
         @for (faq of rightColumnFaqs; track faq) {
-          <div class="bg-white border-b-1 border-gray-200">
+          <div class="bg-white border-b-2 border-gray-200">
             <button 
               (click)="toggleFaq(faq)"
               class="w-full px-6 py-4 flex justify-between items-center cursor-pointer"
             >
-              <span class="text-lg font-medium text-blue-600">{{ faq.question }}</span>
+              <span class="text-md font-medium text-primary">{{ faq.question }}</span>
               <svg 
-                class="w-7 h-7 text-blue-600 transform transition-transform duration-200"
+                class="w-7 h-7 text-primary transform transition-transform duration-200"
                 [class.rotate-180]="faq.isOpen"
                 xmlns="http://www.w3.org/2000/svg" 
                 viewBox="0 0 20 20" 
@@ -57,7 +57,7 @@
             
             @if (faq.isOpen) {
               <div class="px-6 py-4">
-                <p class="text-gray-700">{{ faq.answer }}</p>
+                <p class="text-gray-400">{{ faq.answer }}</p>
               </div>
             }
           </div>

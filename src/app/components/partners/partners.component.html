@@ -2,7 +2,7 @@
   <div class="container mx-auto px-4">
     <!-- Header -->
     <div class="text-center mb-12">
-      <h2 class="text-4xl font-bold text-blue-600 mb-4">شركاء صحة</h2>
+      <h2 class="text-4xl font-extrabold text-primary mb-4">شركاء صحة</h2>
     </div>
 
     <!-- Partners Carousel -->
@@ -24,7 +24,7 @@
       <button 
         (click)="previousPage()" 
         [class.opacity-50]="currentPage === 0"
-        class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-white p-2 rounded-full shadow-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50"
+        class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-white p-2 rounded-full shadow-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50"
         [disabled]="currentPage === 0"
       >
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -35,7 +35,7 @@
       <button 
         (click)="nextPage()" 
         [class.opacity-50]="currentPage === partnerPages.length - 1"
-        class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-white p-2 rounded-full shadow-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50"
+        class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-white p-2 rounded-full shadow-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50"
         [disabled]="currentPage === partnerPages.length - 1"
       >
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">

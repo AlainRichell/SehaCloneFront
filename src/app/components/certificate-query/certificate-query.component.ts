@@ -7,7 +7,21 @@ import { environment } from '../../../environments/environment';
 
 interface Certificate {
   id: number;
-  // Add other certificate properties as needed
+  codigo: string;
+  nombre_paciente: string;
+  identificacion: string;
+  nacionalidad: string;
+  centro_servicio: string;
+  nombre_medico: string;
+  titulo_trabajo: string;
+  fecha_inicio: string;
+  fecha_salida: string;
+  fecha_inicio_lunar?: string;
+  fecha_salida_lunar?: string;
+  duracion?: number;
+  centro_medico: {
+    nombre: string;
+  };
 }
 
 @Component({
@@ -29,13 +43,10 @@ export class CertificateQueryComponent {
     this.error = '';
     this.certificate = null;
 
-    // First request to get certificate data
     this.http.get<Certificate>(`${environment.apiUrl}/certificados/?codigo=${this.code}&identificacion=${this.identification}`)
       .subscribe({
         next: (certificate) => {
           this.certificate = certificate;
-          // After getting the certificate data, download the PDF
-          this.downloadCertificate(certificate.id);
         },
         error: (error) => {
           this.error = 'خطأ في الحصول على الشهادة. يرجى التحقق من البيانات المدخلة.';
@@ -44,11 +55,13 @@ export class CertificateQueryComponent {
       });
   }
 
-  private downloadCertificate(certificateId: number) {
-    this.http.get(`${environment.apiUrl}/certificados/${certificateId}/print/`, { responseType: 'blob' })
+  downloadCertificate() {
+    if (!this.certificate) return;
+    
+    this.http.get(`${environment.apiUrl}/certificados/${this.certificate.id}/print/`, { responseType: 'blob' })
       .subscribe({
         next: (blob) => {
-          saveAs(blob, `${certificateId}-شهادة.pdf`);
+          saveAs(blob, `SickLeaves-${this.certificate?.codigo}.PDF`);
         },
         error: (error) => {
           this.error = 'خطأ في تحميل الشهادة.';
@@ -56,4 +69,4 @@ export class CertificateQueryComponent {
         }
       });
   }
-} 
+}

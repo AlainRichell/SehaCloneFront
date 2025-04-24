@@ -1,43 +1,61 @@
-<nav class="flex flex-col md:flex-row justify-between items-center p-4 md:p-6 gap-4 md:gap-8">
+<nav class="flex flex-col md:flex-row justify-between items-center p-4 md:p-6 gap-4 md:gap-8 max-sm:shadow-sm relative">
   <div class="flex justify-between items-center w-full md:w-auto">
     <div class="cursor-pointer" routerLink="/">
-      <img src="img/seha_logo.svg" alt="Seha Logo" class="h-8 md:h-auto" />
+      <img src="img/seha_logo.svg" alt="Seha Logo" class="h-10 md:h-auto" />
     </div>
     <button class="md:hidden" (click)="toggleMenu()">
       <img src="img/menu.svg" alt="Menu" class="h-6 w-6" />
     </button>
   </div>
+  
+  <!-- Menú principal -->
   <div
-    class="bg-white flex flex-col md:flex-row grow justify-between px-4 md:px-8 py-4 rounded-full gap-4 shadow-lg w-full md:w-auto"
-    [class.hidden]="!isMenuOpen && !isDesktop"
-  >
-    <div class="flex flex-col md:flex-row justify-between gap-4">
-      <button
-        class="flex items-center text-blue-600 hover:text-blue-900 hover:font-bold cursor-pointer"
-      >
+  class="flex flex-col md:flex-row grow justify-between px-4 md:px-8 py-4 gap-4 w-full md:w-auto
+        absolute md:static top-full left-0 right-0 
+         bg-gray-100 md:bg-white 
+         shadow-lg md:shadow-lg 
+         md:rounded-full
+         z-50 
+         transition-all"
+  [class.hidden]="!isMenuOpen"
+  [class.md:flex]="isDesktop"
+>
+    <!-- Versión mobile (columna) -->
+    <div class="flex flex-col md:hidden gap-4 text-right">
+      <button class="text-primary hover:text-secondary py-2">
         الخدمات
       </button>
-      <button
-        class="flex items-center text-blue-600 hover:text-blue-900 hover:font-bold cursor-pointer"
-        routerLink="/leave-query"
-      >
+      <button routerLink="/leave-query" class="text-primary hover:text-secondary py-2">
         الاستعلامات
       </button>
-    </div>
-    <div class="flex flex-col md:flex-row justify-between gap-4">
-      <button
-        class="flex items-center text-blue-600 hover:text-blue-900 hover:font-bold cursor-pointer"
-        routerLink="register"
-      >
+      <button routerLink="/register" class="text-primary hover:text-secondary py-2">
         إنشاء حساب
       </button>
-      <button
-        class="flex items-center rounded-2xl text-white bg-blue-600 hover:bg-blue-900 px-4 py-2 gap-2 cursor-pointer"
-        routerLink="/login"
-      >
-        <img src="img/user.svg" alt="">
-        تسجيل الدخول
+      <button routerLink="/login" class="text-white text-center bg-primary hover:bg-secondary px-4 py-3 rounded-2xl mt-2 flex items-center justify-center gap-2">
+        <img src="img/user.svg" alt="" class="w-4 h-4">
+        <span>تسجيل الدخول</span>
       </button>
+    </div>
+
+    <!-- Versión desktop (fila) -->
+    <div class="hidden md:flex flex-row justify-between gap-4 w-full">
+      <div class="flex flex-row gap-4">
+        <button class="text-primary hover:text-secondary hover:font-bold">
+          الخدمات
+        </button>
+        <button routerLink="/leave-query" class="text-primary hover:text-secondary hover:font-bold">
+          الاستعلامات
+        </button>
+      </div>
+      <div class="flex flex-row gap-4">
+        <button routerLink="/register" class="text-primary hover:text-secondary hover:font-bold">
+          إنشاء حساب
+        </button>
+        <button routerLink="/login" class="text-white bg-primary hover:bg-secondary px-4 py-2 rounded-2xl flex items-center gap-2">
+          <img src="img/user.svg" alt="" class="w-3 h-3">
+          تسجيل الدخول
+        </button>
+      </div>
     </div>
   </div>
 </nav>
