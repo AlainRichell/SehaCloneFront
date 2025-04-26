@@ -47,36 +47,23 @@
     </div>
 
     <div *ngIf="certificate" class="mt-8 p-8 bg-gray-100 rounded-xl shadow-lg">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-center">
+      <div class="grid grid-cols-1 gap-8 text-center">
         <!-- Columna 1 -->
         <div class="space-y-6">
           <div class="text-center">
-            <label class="block font-bold text-gray-700 text-lg">الاسم الكامل:</label>
+            <label class="block font-bold text-gray-700 text-lg">الاسم:</label>
             <p class="text-gray-600 mt-1">{{ certificate.nombre_paciente }}</p>
           </div>
-          
           <div class="text-center">
-            <label class="block font-bold text-gray-700 text-lg">رقم الهوية/الإقامة:</label>
-            <p class="text-gray-600 mt-1">{{ certificate.identificacion }}</p>
+            <label class="block font-bold text-gray-700 text-lg">تاريخ إصدار تقرير الإجازة:</label>
+            <p class="text-gray-600 mt-1">
+              {{ certificate.fecha_creacion | date:'yyyy-MM-dd' }}
+            </p>
           </div>
-          
           <div class="text-center">
-            <label class="block font-bold text-gray-700 text-lg">الجنسية:</label>
-            <p class="text-gray-600 mt-1">{{ certificate.nacionalidad }}</p>
-          </div>
-          
-          <div class="text-center">
-            <label class="block font-bold text-gray-700 text-lg">مركز الخدمة:</label>
-            <p class="text-gray-600 mt-1">{{ certificate.centro_servicio }}</p>
-          </div>
-          
-          <div class="text-center">
-            <label class="block font-bold text-gray-700 text-lg">تاريخ البدء:</label>
+            <label class="block font-bold text-gray-700 text-lg">تبدأ من:</label>
             <p class="text-gray-600 mt-1">
               {{ certificate.fecha_inicio | date:'yyyy-MM-dd' }}
-              <span *ngIf="certificate.fecha_inicio_lunar" class="block text-sm text-gray-500">
-                (قمرية: {{ certificate.fecha_inicio_lunar | date:'yyyy-MM-dd' }})
-              </span>
             </p>
           </div>
         </div>
@@ -84,15 +71,17 @@
         <!-- Columna 2 -->
         <div class="space-y-6">
           <div class="text-center">
-            <label class="block font-bold text-gray-700 text-lg">رمز الإجازة:</label>
-            <p class="text-gray-600 mt-1">{{ certificate.codigo }}</p>
+            <label class="block font-bold text-gray-700 text-lg">وحتى:</label>
+            <p class="text-gray-600 mt-1">
+              {{ certificate.fecha_salida | date:'yyyy-MM-dd' }}
+            </p>
           </div>
-          
-          <div class="text-center">
-            <label class="block font-bold text-gray-700 text-lg">المركز الطبي:</label>
-            <p class="text-gray-600 mt-1">{{ certificate.centro_medico.nombre }}</p>
+
+          <div *ngIf="certificate.duracion" class="text-center">
+            <label class="block font-bold text-gray-700 text-lg">المدة بالأيام:</label>
+            <p class="text-gray-600 mt-1">{{ certificate.duracion }}</p>
           </div>
-          
+
           <div class="text-center">
             <label class="block font-bold text-gray-700 text-lg">اسم الطبيب:</label>
             <p class="text-gray-600 mt-1">{{ certificate.nombre_medico }}</p>
@@ -103,23 +92,10 @@
             <p class="text-gray-600 mt-1">{{ certificate.titulo_trabajo }}</p>
           </div>
           
-          <div class="text-center">
-            <label class="block font-bold text-gray-700 text-lg">تاريخ الانتهاء:</label>
-            <p class="text-gray-600 mt-1">
-              {{ certificate.fecha_salida | date:'yyyy-MM-dd' }}
-              <span *ngIf="certificate.fecha_salida_lunar" class="block text-sm text-gray-500">
-                (قمرية: {{ certificate.fecha_salida_lunar | date:'yyyy-MM-dd' }})
-              </span>
-            </p>
-          </div>
-          
-          <div *ngIf="certificate.duracion" class="text-center">
-            <label class="block font-bold text-gray-700 text-lg">المدة بالأيام:</label>
-            <p class="text-gray-600 mt-1">{{ certificate.duracion }}</p>
-          </div>
         </div>
       </div>
 
+      <!-- 
       <button 
         (click)="downloadCertificate()"
         class="mt-8 w-full py-4 px-6 rounded-lg shadow-sm text-xl font-medium text-white bg-primary hover:bg-secondary"
@@ -127,6 +103,7 @@
         <i class="fas fa-download ml-2"></i>
         تنزيل الشهادة PDF
       </button>
+      -->
     </div>
   </div>
 </div>

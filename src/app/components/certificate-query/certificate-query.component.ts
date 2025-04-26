@@ -19,6 +19,7 @@ interface Certificate {
   fecha_inicio_lunar?: string;
   fecha_salida_lunar?: string;
   duracion?: number;
+  fecha_creacion: string;
   centro_medico: {
     nombre: string;
   };
