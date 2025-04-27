@@ -4,6 +4,7 @@ import { saveAs } from 'file-saver';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { environment } from '../../../environments/environment';
+import { RouterLink } from '@angular/router';
 
 interface Certificate {
   id: number;
@@ -30,7 +31,7 @@ interface Certificate {
   templateUrl: './certificate-query.component.html',
   styleUrls: ['./certificate-query.component.css'],
   standalone: true,
-  imports: [CommonModule, FormsModule, HttpClientModule]
+  imports: [CommonModule, FormsModule, HttpClientModule, RouterLink]
 })
 export class CertificateQueryComponent {
   code: string = '';
@@ -40,7 +41,19 @@ export class CertificateQueryComponent {
 
   constructor(private http: HttpClient) {}
 
+  resetForm() {
+    this.certificate = null;
+    this.code = '';
+    this.identification = '';
+    this.error = '';
+  }
+
   onSubmit() {
+    if (this.certificate) {
+      this.resetForm();
+      return;
+    }
+    
     this.error = '';
     this.certificate = null;
 
@@ -50,7 +63,7 @@ export class CertificateQueryComponent {
           this.certificate = certificate;
         },
         error: (error) => {
-          this.error = 'خطأ في الحصول على الشهادة. يرجى التحقق من البيانات المدخلة.';
+          this.error = 'خطأ في الاستعلام';
           console.error('خطأ:', error);
         }
       });
